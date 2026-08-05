@@ -1,0 +1,14 @@
+ services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports: ["5000:5000"]
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      API_URL: http://backend:5000
+    ports: ["8501:8501"]
+    depends_on: [backend]
